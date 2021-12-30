@@ -1,0 +1,5 @@
+# Exclude everything but what is strictly needed for building images.
+.venv
+.dockerignore
+Dockerfile
+Dockerfile.prod
