@@ -7,6 +7,8 @@ services:
     volumes:
       - ./app/:/usr/src/app/
       - /usr/src/app/.venv
+    links:
+      - selenium
     ports:
       - 8009:8000
     env_file:
@@ -19,6 +21,15 @@ services:
       - POSTGRES_USER=ecommerce
       - POSTGRES_PASSWORD=ecommerce
       - POSTGRES_DB=ecommerce_dev
-
+  selenium-chrome:
+    image: selenium/standalone-chrome:4.1.1-20211217
+    environment:
+       NODE_MAX_INSTANCES: 10
+       NODE_MAX_SESSION: 10
+    privileged: true
+    shm_size: 2g
+    ports:
+      - 4444:4444
+      - 5900:5900
 volumes:
   postgres_data:
